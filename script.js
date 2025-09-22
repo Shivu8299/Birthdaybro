@@ -1,64 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const heartTreeContainer = document.querySelector('.heart-tree-container');
-    const confettiColors = ['#ff69b4', '#ff1493', '#ffa07a', '#ff4500', '#ee82ee', '#da70d6']; // Pink, DeepPink, LightSalmon, OrangeRed, Violet, Orchid
+    const touchDot = document.getElementById('touch-dot');
+    const treeContainer = document.getElementById('tree-container');
+    const magazine = document.getElementById('magazine');
+    const confettiColors = ['#ff69b4', '#ff1493', '#ffa07a', '#ff4500', '#ee82ee', '#da70d6'];
 
-    function createConfettiHeart(x, y, color) {
+    // Function to create and place a single heart
+    function createHeart(x, y, color) {
         const heart = document.createElement('div');
-        heart.classList.add('confetti-heart');
+        heart.classList.add('heart');
         heart.style.backgroundColor = color;
         heart.style.left = `${x}px`;
         heart.style.top = `${y}px`;
-
-        // Randomize end position and rotation for floating effect
-        const xEnd = Math.random() * 200 - 100; // -100 to 100
-        const yEnd = Math.random() * -150 - 50; // -50 to -200 (floats upwards)
-        const rotationEnd = Math.random() * 360; // 0 to 360 degrees
-
-        heart.style.setProperty('--x-end', `${xEnd}px`);
-        heart.style.setProperty('--y-end', `${yEnd}px`);
-        heart.style.setProperty('--rotation-end', `${rotationEnd}deg`);
-
-        heartTreeContainer.appendChild(heart);
-
-        // Remove heart after animation to prevent memory leak
-        heart.addEventListener('animationend', () => {
-            heart.remove();
-        });
+        treeContainer.appendChild(heart);
+        return heart;
     }
 
-    // Function to draw the heart shape with confetti
-    function drawHeartConfetti() {
-        // Approximate heart shape coordinates (relative to container center)
-        const center_x = heartTreeContainer.offsetWidth / 2;
-        const center_y = heartTreeContainer.offsetHeight / 2;
-        const scale = 0.8; // Scale of the heart
+    // Function to draw a heart shape with many small hearts
+    function drawHeartTree() {
+        const treeWidth = treeContainer.offsetWidth;
+        const treeHeight = treeContainer.offsetHeight;
 
-        for (let i = 0; i < 360; i += 5) { // Iterate through angles
-            const angleRad = i * Math.PI / 180;
+        for (let i = 0; i < 360; i += 5) { // Creates a dense heart shape
+            const angle = i * Math.PI / 180;
+            const r = 2.5 * (1 - Math.sin(angle));
+            const x = r * Math.cos(angle) * 30 + treeWidth / 2;
+            const y = r * Math.sin(angle) * 30 + treeHeight / 2 - 100;
 
-            // Heart equation (simplified for distribution)
-            const r = scale * (1 - Math.sin(angleRad)); // This creates a cardioid shape
-            const x = r * Math.cos(angleRad) * 100 + center_x;
-            const y = r * Math.sin(angleRad) * 100 + center_y;
-
-            // Add some randomness for a more natural look
-            const randomX = x + (Math.random() - 0.5) * 40;
-            const randomY = y + (Math.random() - 0.5) * 40;
-
-            // Get a random color
             const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-
-            createConfettiHeart(randomX - 5, randomY - 5, color); // Adjust by half confetti size
+            createHeart(x, y, color);
         }
     }
 
-    // Call this once to fill the tree
-    drawHeartConfetti();
+    // Function to make the hearts fall like leaves
+    function makeHeartsFall() {
+        const hearts = document.querySelectorAll('.heart');
+        hearts.forEach(heart => {
+            const startX = heart.offsetLeft;
+            const startY = heart.offsetTop;
 
-    // Optionally, make it rain more confetti over time
-    // setInterval(drawHeartConfetti, 5000); // Rains new confetti every 5 seconds
+            const endX = startX + (Math.random() - 0.5) * 500;
+            const endY = window.innerHeight - heart.offsetHeight;
 
-    // For a continuous "flowing" heart tree, you'd generate particles
-    // that constantly move and are replaced, similar to the video.
-    // This example fills the tree and optionally adds new ones.
+            heart.style.setProperty('--start-x', `${startX}px`);
+            heart.style.setProperty('--start-y', `${startY}px`);
+            heart.style.setProperty('--end-x', `${endX}px`);
+            heart.style.setProperty('--end-y', `${endY}px`);
+
+            heart.classList.add('falling');
+        });
+    }
+
+    // Main sequence of events
+    touchDot.addEventListener('click', () => {
+        touchDot.style.display = 'none'; // Hide the dot
+
+        treeContainer.style.display = 'block'; // Show the tree container
+        
+        // Use a timeout to simulate the tree growing before hearts appear
+        setTimeout(() => {
+            drawHeartTree();
+
+            // After a short delay, make the hearts fall
+            setTimeout(() => {
+                makeHeartsFall();
+                
+                // After hearts fall, move the tree and show the message
+                setTimeout(() => {
+                    treeContainer.style.transform = 'translateX(50vw) scale(0.8)'; // Move tree right
+                    magazine.classList.add('show'); // Show the magazine
+                }, 3000); // Wait for hearts to start falling
+            }, 500); // Wait for tree to 'grow'
+        }, 500); // Wait for a moment after touch
+    });
+
 });
