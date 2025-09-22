@@ -4,24 +4,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const noButton = document.getElementById('noButton');
     const okButton = document.getElementById('okButton');
 
-    // Step 1: Fade out the initial message
+    // Fade out the initial message after 3 seconds
     setTimeout(() => {
         initialMessage.classList.add('fade-out');
         setTimeout(() => {
             initialMessage.style.display = 'none';
             paiseMessage.classList.remove('hidden');
-        }, 2000);
+        }, 2000); // Wait for the fade-out transition to finish
     }, 3000);
 
-    // Step 2: Make the "NO" button teleport
+    // Make the "NO" button teleport when the mouse hovers over it
     noButton.addEventListener('mouseover', () => {
         const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
         const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        noButton.style.position = 'fixed';
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
     });
 
-    // Step 3: Redirect to the inner page on "OK"
+    // Redirect to the inner page when "OK" is clicked
     okButton.addEventListener('click', () => {
         window.location.href = 'inner_page.html';
     });
