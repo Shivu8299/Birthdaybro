@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadPhotoSlider = () => {
         const photoSlider = document.getElementById('photoSlider');
-        // Corrected paths
         const photos = ['me1.png', 'me2.png', 'me3.png', 'me4.png', 'me5.png'];
         
         photos.forEach(photo => {
@@ -32,14 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadSongSlider = () => {
         const songSlider = document.getElementById('songSlider');
-        // Corrected paths
         const songs = [
-            { src: 'song15.mp3', cover: 'songcover15.jpg', title: 'Song 1' },
-            { src: 'song16.mp3', cover: 'songcover16.jpg', title: 'Song 2' },
-            { src: 'song17.mp3', cover: 'songcover17.jpg', title: 'Song 3' },
-            { src: 'song18.mp3', cover: 'songcover18.jpg', title: 'Song 4' },
-            { src: 'song19.mp3', cover: 'songcover19.jpg', title: 'Song 5' },
-            { src: 'song20.mp3', cover: 'songcover20.jpg', title: 'Song 6' }
+            { src: 'song15.mp3', cover: 'songcover15.jpg' },
+            { src: 'song16.mp3', cover: 'songcover16.jpg' },
+            { src: 'song17.mp3', cover: 'songcover17.jpg' },
+            { src: 'song18.mp3', cover: 'songcover18.jpg' },
+            { src: 'song19.mp3', cover: 'songcover19.jpg' },
+            { src: 'song20.mp3', cover: 'songcover20.jpg' }
         ];
 
         songs.forEach(song => {
@@ -52,17 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const audio = document.createElement('audio');
             audio.src = song.src;
             audio.controls = true;
-
-            const title = document.createElement('p');
-            title.textContent = song.title;
             
             songItem.appendChild(img);
-            songItem.appendChild(title);
             songItem.appendChild(audio);
             songSlider.appendChild(songItem);
         });
     };
 
+    // The rest of the game logic is the same and should work correctly
     const startGameButton = document.getElementById('startGameButton');
     const gamePlayArea = document.getElementById('gamePlayArea');
     const scoreElement = document.getElementById('score');
@@ -96,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createGameImage = () => {
         const img = document.createElement('img');
-        img.src = 'game1.jpg'; // Corrected path
+        img.src = 'game1.jpg';
         img.className = 'game-image';
         img.style.left = `${Math.random() * (gamePlayArea.offsetWidth - 50)}px`;
         img.style.top = `${Math.random() * (gamePlayArea.offsetHeight - 50)}px`;
@@ -115,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createSpecialImage = () => {
         const img = document.createElement('img');
-        img.src = 'game2.jpg'; // Corrected path
+        img.src = 'game2.jpg';
         img.className = 'game-image special';
         img.style.left = `${Math.random() * (gamePlayArea.offsetWidth - 50)}px`;
         img.style.top = `${Math.random() * (gamePlayArea.offsetHeight - 50)}px`;
@@ -143,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     
     const startAnimation = () => {
-        // Corrected paths
         const imageFiles = ['animation1.jpg', 'animation2.jpg'];
         
         setInterval(() => {
@@ -163,4 +157,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     };
 });
-                
+                          
