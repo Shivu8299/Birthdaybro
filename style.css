@@ -41,9 +41,7 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    align-items: center; /* This ensures vertical alignment */
-    gap: 30px; /* Provides consistent spacing */
-    position: relative;
+    gap: 30px;
 }
 
 button {
@@ -70,6 +68,5 @@ button {
 #noButton {
     background-color: #f44336;
     color: white;
-    position: absolute;
-    transition: all 0s;
+    /* This button will be positioned with JavaScript */
 }
