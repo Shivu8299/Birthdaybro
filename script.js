@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const magazine = document.getElementById('magazine');
     const confettiColors = ['#ff69b4', '#ff1493', '#ffa07a', '#ff4500', '#ee82ee', '#da70d6'];
 
-    // Function to create and place a single heart
     function createHeart(x, y, color) {
         const heart = document.createElement('div');
         heart.classList.add('heart');
@@ -15,12 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return heart;
     }
 
-    // Function to draw a heart shape with many small hearts
     function drawHeartTree() {
         const treeWidth = treeContainer.offsetWidth;
         const treeHeight = treeContainer.offsetHeight;
 
-        for (let i = 0; i < 360; i += 5) { // Creates a dense heart shape
+        for (let i = 0; i < 360; i += 5) {
             const angle = i * Math.PI / 180;
             const r = 2.5 * (1 - Math.sin(angle));
             const x = r * Math.cos(angle) * 30 + treeWidth / 2;
@@ -31,13 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to make the hearts fall like leaves
     function makeHeartsFall() {
         const hearts = document.querySelectorAll('.heart');
         hearts.forEach(heart => {
             const startX = heart.offsetLeft;
             const startY = heart.offsetTop;
-
             const endX = startX + (Math.random() - 0.5) * 500;
             const endY = window.innerHeight - heart.offsetHeight;
 
@@ -45,32 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
             heart.style.setProperty('--start-y', `${startY}px`);
             heart.style.setProperty('--end-x', `${endX}px`);
             heart.style.setProperty('--end-y', `${endY}px`);
-
             heart.classList.add('falling');
         });
     }
 
-    // Main sequence of events
     touchDot.addEventListener('click', () => {
-        touchDot.style.display = 'none'; // Hide the dot
+        touchDot.style.display = 'none';
+        treeContainer.style.display = 'block';
 
-        treeContainer.style.display = 'block'; // Show the tree container
-        
-        // Use a timeout to simulate the tree growing before hearts appear
         setTimeout(() => {
             drawHeartTree();
 
-            // After a short delay, make the hearts fall
             setTimeout(() => {
                 makeHeartsFall();
                 
-                // After hearts fall, move the tree and show the message
                 setTimeout(() => {
-                    treeContainer.style.transform = 'translateX(50vw) scale(0.8)'; // Move tree right
-                    magazine.classList.add('show'); // Show the magazine
-                }, 3000); // Wait for hearts to start falling
-            }, 500); // Wait for tree to 'grow'
-        }, 500); // Wait for a moment after touch
+                    treeContainer.style.transform = 'translateX(-50%) translateX(25vw) scale(0.8)';
+                    magazine.classList.add('show');
+                }, 3000);
+            }, 500);
+        }, 500);
     });
-
 });
