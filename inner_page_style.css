@@ -1,12 +1,27 @@
 body {
-    color: #fff;
-    font-family: sans-serif;
+    background: #f8e5e5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #444;
+    padding: 20px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: auto;
-    margin: 0;
+    min-height: 100vh;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     text-align: center;
 }
 
@@ -14,140 +29,147 @@ body {
     display: none;
 }
 
-.open-box-container {
+/* Tap to open card */
+.tap-box-card {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 80vh;
 }
 
 .tap-box {
-    padding: 30px 50px;
     font-size: 2em;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 2px solid white;
+    font-weight: bold;
+    color: #e27d89;
     cursor: pointer;
     transition: transform 0.3s ease;
-    border-radius: 10px;
 }
 
 .tap-box:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-.content-container {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
+/* Main Content Styles */
+.content {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.main-message {
+    font-size: 2em;
+    font-weight: bold;
+    color: #e27d89;
+    margin-bottom: 20px;
+}
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.note {
+    background: #f0f0f0;
     border-radius: 15px;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
-.opened-message {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+/* Section headings */
+.section h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e27d89;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
-.opened-message.show {
-    opacity: 1;
-}
-
-/* Animation Area */
-.animation-area {
-    position: relative;
-    height: 200px;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-.animation-item {
-    position: absolute;
-    bottom: -50px;
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    animation: flowUp linear infinite;
-}
-
-@keyframes flowUp {
-    from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-500px) rotate(720deg);
-        opacity: 0;
-    }
+.section {
+    margin-bottom: 30px;
 }
 
 /* Sliders */
-.slider-section {
-    margin: 40px 0;
-}
-
-.section-title {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-
-.photo-slider {
+.slider {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 15px;
-    padding: 10px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
 }
 
-.photo-slider img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+.slider::-webkit-scrollbar {
+    display: none;
 }
 
-.song-slider {
+.photo-item {
+    flex: 0 0 70%;
+    scroll-snap-align: start;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.song-slider .song-item {
+    flex: 0 0 50%;
+    scroll-snap-align: start;
     display: flex;
-    overflow-x: scroll;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 15px;
     padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.song-item {
-    min-width: 150px;
-    text-align: center;
-}
-
-.song-item img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+.song-slider .song-item img {
+    width: 100%;
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.song-item audio {
-    width: 150px;
+.song-slider .song-item p {
+    font-weight: 600;
+    margin: 0;
+    color: #444;
 }
 
 /* Game Area */
-.game-container {
-    margin-top: 50px;
+.play-button {
+    background: #e27d89;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.game-title {
-    font-size: 1.8em;
+.play-button:hover {
+    background: #d86877;
 }
 
 .game-area {
+    margin-top: 20px;
     position: relative;
     width: 100%;
-    height: 400px;
-    border: 2px dashed white;
-    margin-top: 20px;
+    height: 300px;
+    border-radius: 15px;
+    border: 2px dashed #e27d89;
     overflow: hidden;
 }
 
@@ -156,6 +178,8 @@ body {
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
 }
 
 .game-image {
@@ -164,6 +188,7 @@ body {
     height: 50px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    border-radius: 50%;
 }
 
 .game-image:hover {
