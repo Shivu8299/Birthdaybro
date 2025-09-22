@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise!</title>
+    <link rel="stylesheet" href="inner_page_style.css">
+    <style>
+        body {
+            background-image: url('file/songcover2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="open-box-container" id="openBoxContainer">
+        <div class="tap-box" id="tapBox">
+            Tap to Open
+        </div>
+    </div>
+
+    <div class="content-container hidden" id="mainContent">
+        <h2 id="openedMessage" class="opened-message"></h2>
+        <div class="animation-area" id="animationArea"></div>
+
+        <div class="slider-section">
+            <h3 class="section-title">Photo Memories</h3>
+            <div class="photo-slider" id="photoSlider"></div>
+        </div>
+
+        <div class="slider-section">
+            <h3 class="section-title">Your Favorite Songs</h3>
+            <div class="song-slider" id="songSlider"></div>
+        </div>
+        
+        <div class="game-container">
+            <h3 class="game-title">Tap to Play a Game!</h3>
+            <button id="startGameButton">Play Game</button>
+            <div id="gamePlayArea" class="game-area hidden">
+                <div class="game-info">
+                    <p>Score: <span id="score">0</span></p>
+                    <p>Time: <span id="timer">30</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="inner_page_script.js"></script>
+</body>
+</html>
