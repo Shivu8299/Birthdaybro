@@ -1,80 +1,69 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Tap to Open Box Logic
+    const tapBoxCard = document.getElementById('tapBoxCard');
     const tapBox = document.getElementById('tapBox');
     const mainContent = document.getElementById('mainContent');
     const openedMessage = document.getElementById('openedMessage');
-    const openBoxContainer = document.getElementById('openBoxContainer');
-    const animationArea = document.getElementById('animationArea');
-
+    
+    // Tap to open box logic
     tapBox.addEventListener('click', () => {
-        openBoxContainer.style.display = 'none';
+        tapBoxCard.style.display = 'none';
         mainContent.classList.remove('hidden');
+        openedMessage.textContent = 'A Surprise for You';
         
-        openedMessage.textContent = 'You are the best brother!';
-        setTimeout(() => {
-            openedMessage.classList.add('show');
-        }, 500);
-
+        loadPhotoSlider();
+        loadSongSlider();
         startAnimation();
-        loadSliders();
     });
 
-    // Animation Logic
-    const startAnimation = () => {
-        const imageFiles = ['file/animation1.jpg', 'file/animation2.jpg'];
-        
-        setInterval(() => {
-            const img = document.createElement('img');
-            const randomImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
-            img.src = randomImage;
-            img.className = 'animation-item';
-            
-            img.style.left = `${Math.random() * 100}vw`;
-            img.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            
-            animationArea.appendChild(img);
-            
-            setTimeout(() => {
-                img.remove();
-            }, 5000);
-        }, 300);
-    };
-
-    // Sliders Logic
-    const loadSliders = () => {
-        // Photo Slider
+    // Load photo slider content
+    const loadPhotoSlider = () => {
         const photoSlider = document.getElementById('photoSlider');
         const photos = ['file/me1.png', 'file/me2.png', 'file/me3.png', 'file/me4.png', 'file/me5.png'];
         
         photos.forEach(photo => {
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
             const img = document.createElement('img');
             img.src = photo;
-            photoSlider.appendChild(img);
-        });
-
-        // Song Slider
-        const songSlider = document.getElementById('songSlider');
-        const songs = ['file/song15.mp3', 'file/song16.mp3', 'file/song17.mp3', 'file/song18.mp3', 'file/song19.mp3', 'file/song20.mp3'];
-        const albumCovers = ['file/songcover15.jpg', 'file/songcover16.jpg', 'file/songcover17.jpg', 'file/songcover18.jpg', 'file/songcover19.jpg', 'file/songcover20.jpg'];
-
-        songs.forEach((song, index) => {
-            const songContainer = document.createElement('div');
-            songContainer.className = 'song-item';
-            
-            const img = document.createElement('img');
-            img.src = albumCovers[index];
-            
-            const audio = document.createElement('audio');
-            audio.src = song;
-            audio.controls = true;
-            
-            songContainer.appendChild(img);
-            songContainer.appendChild(audio);
-            songSlider.appendChild(songContainer);
+            photoItem.appendChild(img);
+            photoSlider.appendChild(photoItem);
         });
     };
 
-    // The Game Logic
+    // Load song slider content
+    const loadSongSlider = () => {
+        const songSlider = document.getElementById('songSlider');
+        const songs = [
+            { src: 'file/song15.mp3', cover: 'file/songcover15.jpg', title: 'Song 1' },
+            { src: 'file/song16.mp3', cover: 'file/songcover16.jpg', title: 'Song 2' },
+            { src: 'file/song17.mp3', cover: 'file/songcover17.jpg', title: 'Song 3' },
+            { src: 'file/song18.mp3', cover: 'file/songcover18.jpg', title: 'Song 4' },
+            { src: 'file/song19.mp3', cover: 'file/songcover19.jpg', title: 'Song 5' },
+            { src: 'file/song20.mp3', cover: 'file/songcover20.jpg', title: 'Song 6' }
+        ];
+
+        songs.forEach(song => {
+            const songItem = document.createElement('div');
+            songItem.className = 'song-item';
+            
+            const img = document.createElement('img');
+            img.src = song.cover;
+            
+            const audio = document.createElement('audio');
+            audio.src = song.src;
+            audio.controls = true;
+
+            const title = document.createElement('p');
+            title.textContent = song.title;
+            
+            songItem.appendChild(img);
+            songItem.appendChild(title);
+            songItem.appendChild(audio);
+            songSlider.appendChild(songItem);
+        });
+    };
+
+    // Game Logic
     const startGameButton = document.getElementById('startGameButton');
     const gamePlayArea = document.getElementById('gamePlayArea');
     const scoreElement = document.getElementById('score');
@@ -86,25 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let specialImageInterval;
 
     startGameButton.addEventListener('click', () => {
-        startGameButton.style.display = 'none';
+        startGameButton.classList.add('hidden');
         gamePlayArea.classList.remove('hidden');
-        gamePlayArea.innerHTML = `
-            <div class="game-info">
-                <p>Score: <span id="score">0</span></p>
-                <p>Time: <span id="timer">30</span></p>
-            </div>
-        `;
-        const newScoreElement = document.getElementById('score');
-        const newTimerElement = document.getElementById('timer');
         score = 0;
         timer = 30;
-
+        scoreElement.textContent = score;
+        timerElement.textContent = timer;
+        
         gameInterval = setInterval(createGameImage, 1000);
         specialImageInterval = setInterval(createSpecialImage, 4000);
         
         const countdown = setInterval(() => {
             timer--;
-            newTimerElement.textContent = timer;
+            timerElement.textContent = timer;
             if (timer <= 0) {
                 clearInterval(countdown);
                 endGame();
@@ -122,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         img.addEventListener('click', () => {
             score++;
-            document.getElementById('score').textContent = score;
+            scoreElement.textContent = score;
             img.remove();
         });
         
@@ -141,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         img.addEventListener('click', () => {
             score += 4;
-            document.getElementById('score').textContent = score;
+            scoreElement.textContent = score;
             img.remove();
         });
         
@@ -153,11 +136,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const endGame = () => {
         clearInterval(gameInterval);
         clearInterval(specialImageInterval);
-        let message = 'You are the best brother!';
         gamePlayArea.innerHTML = `
-            <h2>Game Over!</h2>
+            <h3>Game Over!</h3>
             <p>Your Final Score: ${score}</p>
-            <h3>${message}</h3>
+            <p class="final-message">You are the best brother!</p>
         `;
     };
 });
