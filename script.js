@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         initialMessage.style.display = 'none';
         paiseMessage.classList.remove('hidden');
+        teleportNoButton(); // Set initial position
     }, 3000);
 
-    // This function will teleport the button to a new random location.
     function teleportNoButton() {
         const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
         const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
@@ -19,13 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         noButton.style.top = `${y}px`;
     }
 
-    // Set the initial position of the NO button
-    noButton.style.position = 'fixed';
-    noButton.style.left = '50%';
-    noButton.style.top = '50%';
-    noButton.style.transform = 'translate(-50%, -50%)';
-
-    // This event listener checks for a proximity to the button.
     window.addEventListener('mousemove', (e) => {
         const rect = noButton.getBoundingClientRect();
         const distance = Math.sqrt(
@@ -33,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Math.pow(e.clientY - (rect.top + rect.height / 2), 2)
         );
 
-        if (distance < 100) { // Teleport if the mouse is within 100px of the button
+        if (distance < 100) {
             teleportNoButton();
         }
     });
@@ -42,3 +35,4 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = 'inner_page.html';
     });
 });
+                          
