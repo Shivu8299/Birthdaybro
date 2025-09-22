@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadPhotoSlider = () => {
         const photoSlider = document.getElementById('photoSlider');
-        const photos = ['file/me1.png', 'file/me2.png', 'file/me3.png', 'file/me4.png', 'file/me5.png'];
+        // Corrected paths
+        const photos = ['me1.png', 'me2.png', 'me3.png', 'me4.png', 'me5.png'];
         
         photos.forEach(photo => {
             const photoItem = document.createElement('div');
@@ -31,13 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadSongSlider = () => {
         const songSlider = document.getElementById('songSlider');
+        // Corrected paths
         const songs = [
-            { src: 'file/song15.mp3', cover: 'file/songcover15.jpg', title: 'Song 1' },
-            { src: 'file/song16.mp3', cover: 'file/songcover16.jpg', title: 'Song 2' },
-            { src: 'file/song17.mp3', cover: 'file/songcover17.jpg', title: 'Song 3' },
-            { src: 'file/song18.mp3', cover: 'file/songcover18.jpg', title: 'Song 4' },
-            { src: 'file/song19.mp3', cover: 'file/songcover19.jpg', title: 'Song 5' },
-            { src: 'file/song20.mp3', cover: 'file/songcover20.jpg', title: 'Song 6' }
+            { src: 'song15.mp3', cover: 'songcover15.jpg', title: 'Song 1' },
+            { src: 'song16.mp3', cover: 'songcover16.jpg', title: 'Song 2' },
+            { src: 'song17.mp3', cover: 'songcover17.jpg', title: 'Song 3' },
+            { src: 'song18.mp3', cover: 'songcover18.jpg', title: 'Song 4' },
+            { src: 'song19.mp3', cover: 'songcover19.jpg', title: 'Song 5' },
+            { src: 'song20.mp3', cover: 'songcover20.jpg', title: 'Song 6' }
         ];
 
         songs.forEach(song => {
@@ -94,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createGameImage = () => {
         const img = document.createElement('img');
-        img.src = 'file/game1.jpg';
+        img.src = 'game1.jpg'; // Corrected path
         img.className = 'game-image';
         img.style.left = `${Math.random() * (gamePlayArea.offsetWidth - 50)}px`;
         img.style.top = `${Math.random() * (gamePlayArea.offsetHeight - 50)}px`;
@@ -113,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const createSpecialImage = () => {
         const img = document.createElement('img');
-        img.src = 'file/game2.jpg';
+        img.src = 'game2.jpg'; // Corrected path
         img.className = 'game-image special';
         img.style.left = `${Math.random() * (gamePlayArea.offsetWidth - 50)}px`;
         img.style.top = `${Math.random() * (gamePlayArea.offsetHeight - 50)}px`;
@@ -141,7 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     
     const startAnimation = () => {
-        const imageFiles = ['file/animation1.jpg', 'file/animation2.jpg'];
+        // Corrected paths
+        const imageFiles = ['animation1.jpg', 'animation2.jpg'];
         
         setInterval(() => {
             const img = document.createElement('img');
@@ -160,3 +163,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     };
 });
+                
