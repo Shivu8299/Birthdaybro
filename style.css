@@ -8,6 +8,7 @@ body {
     height: 100vh;
     overflow: hidden;
     margin: 0;
+    transition: background-color 2s ease-in-out;
 }
 
 .message-container {
@@ -15,11 +16,14 @@ body {
 }
 
 #initialMessage {
-    transition: opacity 2s ease-in-out;
+    font-size: 3em;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 2s forwards 0.5s;
 }
 
-.fade-out {
-    opacity: 0;
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
 .hidden {
@@ -27,25 +31,28 @@ body {
 }
 
 .paise-text {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .buttons {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 20px; /* Adds space between buttons */
+    gap: 30px;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    margin: 0 10px;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 50px;
     border: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #okButton {
@@ -53,8 +60,14 @@ button {
     color: white;
 }
 
+#okButton:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
 #noButton {
     background-color: #f44336;
     color: white;
-    /* Removed position: absolute; */
+    position: absolute; /* This is key for the teleporting effect */
+    transition: all 0s; /* No transition on teleporting */
 }
