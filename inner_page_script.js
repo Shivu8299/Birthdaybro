@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // The rest of the game logic is the same and should work correctly
     const startGameButton = document.getElementById('startGameButton');
     const gamePlayArea = document.getElementById('gamePlayArea');
     const scoreElement = document.getElementById('score');
