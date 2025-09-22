@@ -9,20 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
         paiseMessage.classList.remove('hidden');
     }, 3000);
 
-    let isTeleporting = false;
-
     // This function will teleport the button to a new random location.
     function teleportNoButton() {
-        if (!isTeleporting) {
-            isTeleporting = true;
-            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
-            noButton.style.position = 'fixed';
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
-            isTeleporting = false;
-        }
+        const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+        
+        noButton.style.position = 'fixed';
+        noButton.style.left = `${x}px`;
+        noButton.style.top = `${y}px`;
     }
+
+    // Set the initial position of the NO button
+    noButton.style.position = 'fixed';
+    noButton.style.left = '50%';
+    noButton.style.top = '50%';
+    noButton.style.transform = 'translate(-50%, -50%)';
 
     // This event listener checks for a proximity to the button.
     window.addEventListener('mousemove', (e) => {
