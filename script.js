@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     noButton.addEventListener('mouseover', () => {
         const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
         const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
-        noButton.style.position = 'fixed';
+        
+        // This is the key change: setting position to fixed allows it to move freely.
+        noButton.style.position = 'fixed'; 
         noButton.style.left = `${x}px`;
         noButton.style.top = `${y}px`;
     });
