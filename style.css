@@ -41,8 +41,9 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 30px; /* This creates space between the buttons */
-    position: relative; /* To contain the absolute positioned NO button */
+    align-items: center; /* This ensures vertical alignment */
+    gap: 30px; /* Provides consistent spacing */
+    position: relative;
 }
 
 button {
@@ -70,5 +71,5 @@ button {
     background-color: #f44336;
     color: white;
     position: absolute;
-    left: 170px; /* Initial position */
+    transition: all 0s;
 }
