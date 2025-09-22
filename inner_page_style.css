@@ -29,7 +29,6 @@ body {
     display: none;
 }
 
-/* Tap to open card */
 .tap-box-card {
     display: flex;
     justify-content: center;
@@ -49,7 +48,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Main Content Styles */
 .content {
     animation: fadeIn 1s ease-in;
 }
@@ -81,7 +79,6 @@ body {
     font-weight: 500;
 }
 
-/* Section headings */
 .section h2 {
     font-size: 1.5em;
     font-weight: bold;
@@ -94,7 +91,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* Sliders */
 .slider {
     display: flex;
     overflow-x: auto;
@@ -146,7 +142,6 @@ body {
     color: #444;
 }
 
-/* Game Area */
 .play-button {
     background: #e27d89;
     color: #fff;
