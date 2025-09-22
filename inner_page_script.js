@@ -32,30 +32,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadSongSlider = () => {
         const songSlider = document.getElementById('songSlider');
         const songs = [
-            { src: 'song15.mp3', cover: 'songcover15.jpg', title: 'Dil Ka Jo Haal Hai' },
-            { src: 'song16.mp3', cover: 'songcover16.jpg', title: 'Me Gustas Tu' },
-            { src: 'song17.mp3', cover: 'songcover17.jpg', title: 'Snowman' },
-            { src: 'song18.mp3', cover: 'songcover18.jpg', title: 'Sare Din Masti Karte' },
-            { src: 'song19.mp3', cover: 'songcover19.jpg', title: 'Perfect Duo' },
-            { src: 'song20.mp3', cover: 'songcover20.jpg', title: 'I Am Batman' }
+            { src: 'song15.mp3', cover: 'songcover15.jpg' },
+            { src: 'song16.mp3', cover: 'songcover16.jpg' },
+            { src: 'song17.mp3', cover: 'songcover17.jpg' },
+            { src: 'song18.mp3', cover: 'songcover18.jpg' },
+            { src: 'song19.mp3', cover: 'songcover19.jpg' },
+            { src: 'song20.mp3', cover: 'songcover20.jpg' }
         ];
 
         songs.forEach(song => {
             const songItem = document.createElement('div');
-            songItem.className = 'song-item playlist-card'; // Added new class
+            songItem.className = 'song-item playlist-card';
             
             const img = document.createElement('img');
             img.src = song.cover;
             
-            const title = document.createElement('p');
-            title.textContent = song.title;
-
             const audio = document.createElement('audio');
             audio.src = song.src;
             audio.controls = true;
             
             songItem.appendChild(img);
-            songItem.appendChild(title);
             songItem.appendChild(audio);
             songSlider.appendChild(songItem);
         });
@@ -160,3 +156,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     };
 });
+                             
