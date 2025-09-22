@@ -35,8 +35,7 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    position: relative;
-    width: 200px;
+    gap: 20px; /* Adds space between buttons */
 }
 
 button {
@@ -57,7 +56,5 @@ button {
 #noButton {
     background-color: #f44336;
     color: white;
-    position: absolute; /* Key for the teleporting effect */
-    left: 110px; /* Initial position */
-    transform: translateX(-50%);
+    /* Removed position: absolute; */
 }
