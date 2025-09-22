@@ -41,7 +41,8 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 30px; /* This creates space between the buttons */
+    position: relative; /* To contain the absolute positioned NO button */
 }
 
 button {
@@ -68,6 +69,6 @@ button {
 #noButton {
     background-color: #f44336;
     color: white;
-    position: absolute; /* This is key for the teleporting effect */
-    transition: all 0s; /* No transition on teleporting */
+    position: absolute;
+    left: 170px; /* Initial position */
 }
