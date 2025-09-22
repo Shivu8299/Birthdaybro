@@ -3,15 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const tapBox = document.getElementById('tapBox');
     const mainContent = document.getElementById('mainContent');
     const openedMessage = document.getElementById('openedMessage');
-    
-    // Tap to open box logic
-    tapBox.addEventListener('click', () => {
-        // Hides the "Tap to Open" card
-        tapBoxCard.style.display = 'none'; 
-        
-        // Shows the main content
-        mainContent.classList.remove('hidden'); 
+    const animationArea = document.getElementById('animationArea');
 
+    tapBox.addEventListener('click', () => {
+        tapBoxCard.style.display = 'none';
+        mainContent.classList.remove('hidden'); 
         openedMessage.textContent = 'A Surprise for You';
         
         loadPhotoSlider();
@@ -19,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         startAnimation();
     });
 
-    // Load photo slider content
     const loadPhotoSlider = () => {
         const photoSlider = document.getElementById('photoSlider');
         const photos = ['file/me1.png', 'file/me2.png', 'file/me3.png', 'file/me4.png', 'file/me5.png'];
@@ -34,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // Load song slider content
     const loadSongSlider = () => {
         const songSlider = document.getElementById('songSlider');
         const songs = [
@@ -67,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    // The rest of the game logic is the same and should work correctly
     const startGameButton = document.getElementById('startGameButton');
     const gamePlayArea = document.getElementById('gamePlayArea');
     const scoreElement = document.getElementById('score');
@@ -146,10 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="final-message">You are the best brother!</p>
         `;
     };
-
-    // Animation logic
+    
     const startAnimation = () => {
-        const animationArea = document.getElementById('animationArea');
         const imageFiles = ['file/animation1.jpg', 'file/animation2.jpg'];
         
         setInterval(() => {
