@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         initialMessage.style.display = 'none';
         paiseMessage.classList.remove('hidden');
-        teleportNoButton(); // Set initial position
     }, 3000);
 
     function teleportNoButton() {
@@ -35,4 +34,3 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = 'inner_page.html';
     });
 });
-                          
