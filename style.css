@@ -15,11 +15,12 @@ body {
     background-repeat: no-repeat;
 }
 
-/* The touchable dot to start the show */
+/* Touch dot animation */
 .touch-dot {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
     background-color: white;
@@ -30,30 +31,19 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+    50% { transform: scale(1.5) translate(-50%, -50%); opacity: 0.5; }
+    100% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
 }
 
-/* Moon and Balloons (simplified from previous code for clarity) */
+/* Basic styling for moon and balloons */
 .moon {
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    width: 100px;
-    height: 100px;
-    background-color: #f7f7e8;
-    border-radius: 50%;
-    box-shadow: 0 0 20px 5px rgba(247, 247, 232, 0.5);
+    position: absolute; top: 15%; left: 10%; width: 100px; height: 100px;
+    background-color: #f7f7e8; border-radius: 50%; box-shadow: 0 0 20px 5px rgba(247, 247, 232, 0.5);
 }
-
 .balloon {
-    position: absolute;
-    width: 80px;
-    height: 100px;
-    border-radius: 50%;
-    animation: float 10s infinite ease-in-out;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    position: absolute; width: 80px; height: 100px; border-radius: 50%;
+    animation: float 10s infinite ease-in-out; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
 }
 .balloon-red { top: 5%; right: 15%; animation-delay: 0s; background-color: #ff6347; }
 .balloon-yellow { top: 15%; right: 5%; animation-delay: 3s; background-color: #ffd700; }
@@ -65,98 +55,50 @@ body {
     100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* Tree Styling */
+/* Tree and heart styling */
 .tree-container {
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    display: none; /* Hidden until the dot is touched */
+    display: none;
     z-index: 50;
     transition: transform 5s ease-in-out;
 }
-
 .tree-trunk {
-    width: 20px;
-    height: 80px;
-    background-color: #8B4513;
-    border-radius: 5px 5px 0 0;
+    width: 20px; height: 80px; background-color: #8B4513; border-radius: 5px 5px 0 0;
 }
-
 .heart {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: #ff4500;
-    transform: rotate(-45deg);
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
+    position: absolute; width: 15px; height: 15px; background-color: #ff4500;
+    transform: rotate(-45deg); border-top-left-radius: 50%; border-top-right-radius: 50%;
     z-index: 60;
 }
-
 .heart::before, .heart::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: inherit;
-    border-radius: 50%;
+    content: ''; position: absolute; width: 15px; height: 15px;
+    background-color: inherit; border-radius: 50%;
 }
 .heart::before { top: -50%; left: 0; }
 .heart::after { left: 50%; top: 0; }
 
-.growing {
-    animation: grow-tree 2s ease-out forwards;
-}
-
-@keyframes grow-tree {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-}
-
-/* Falling hearts animation */
-.falling {
-    animation: fall-like-leaf 4s ease-in forwards;
-}
+.falling { animation: fall-like-leaf 4s ease-in forwards; }
 
 @keyframes fall-like-leaf {
     0% { transform: translate(var(--start-x), var(--start-y)) scale(1) rotate(0deg); opacity: 1; }
     100% { transform: translate(var(--end-x), var(--end-y)) scale(0.8) rotate(720deg); opacity: 0; }
 }
 
-/* Magazine Styling */
+/* Magazine message styling */
 .magazine {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    padding: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #333;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    top: 50%; left: 50%; width: 400px; padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); color: #333;
+    border-radius: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     text-align: center;
-    transform: translate(-50%, -50%) scale(0); /* Start hidden and small */
+    transform: translate(-50%, -50%) scale(0);
     transition: transform 1s ease-out;
     z-index: 100;
 }
-
-.magazine.show {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.magazine-date {
-    font-size: 1.5em;
-    color: #e94e77;
-    margin: 0;
-}
-.magazine-headline {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin: 10px 0;
-}
-.magazine-message {
-    font-size: 1.2em;
-    font-style: italic;
-    color: #555;
-}
+.magazine.show { transform: translate(-50%, -50%) scale(1); }
+.magazine-date { font-size: 1.5em; color: #e94e77; margin: 0; }
+.magazine-headline { font-size: 2.5em; font-weight: bold; margin: 10px 0; }
+.magazine-message { font-size: 1.2em; font-style: italic; color: #555; }
